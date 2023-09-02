@@ -4,3 +4,5 @@
 ./spdlog
 
 ./cmake-build-debug
+./.idea
+./.gitignore
