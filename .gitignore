@@ -1,8 +1,8 @@
-./asio
-./json
-./Simple-Web-Server
-./spdlog
+/asio/
+/json/
+/Simple-Web-Server/
+/spdlog/
 
-./cmake-build-debug
-./.idea
-./.gitignore
+/cmake-build-debug/
+/.idea/
+/.gitignore
