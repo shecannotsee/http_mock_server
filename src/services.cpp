@@ -32,7 +32,13 @@ void services::interface_route_02(Response response, Request request) {
 void services::interface_route_03(Response response, Request request) {
   logModule::registerLogger("upload");
   auto log_ptr = logModule::getLogger("upload");
+  log_ptr->info("start=========================");
+  log_ptr->info((request->content).string());
+  log_ptr->info("end=========================");
+
+  nlohmann::json ret;
 
 
-
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
 }
