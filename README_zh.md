@@ -2,7 +2,7 @@
 
 
 
-
+#### 1.处理独立 asio 和 Simple-Web-Server 编译的情况
 
 在获取 Simple-Web-Server 源代码后需要修改其文件 asio_compatibility.hpp 中的代码
 
@@ -31,3 +31,12 @@
 ```
 
 目的是使用独立的asio库而不是boost
+
+
+
+#### 2.处理修改 Simple-Web-Server 编译文件后的提交问题
+
+直接在拉取代码后，修改源码之前删除 Simple-Web-Server 目录下的 .git 目录
+
+
+
