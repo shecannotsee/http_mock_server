@@ -19,7 +19,8 @@ const map<string,tuple<string,string>> route = {
       {"demo",   {"POST",   "^/xxxxx$"}}, // 接口示例
 /*-1*/{"-1",     {"POST",   "^/test$"}}, // 测试接口1
 /*51*/{"01",     {"POST",   "^/other/sendPicture$"}}, // 接口示例
-      {"02",     {"POST",   "/rsu/configure_manage/export_configure"}},// 下载接口
+      {"02",     {"POST",   "/rsu/configure_manage/export_configure"}},// 从服务器下载文件到前端接口
+      {"03",     {"POST",   "/rsu/remote_manage/import_configure"}},// 上传文件到服务器接口
       {"9999999",{"POST",   "end"}} // 只是用来做末尾,无意义
 };
 

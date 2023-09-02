@@ -26,19 +26,20 @@ void http_server::register_rest_api() {
     log_ptr->info((request->content).string());
 //    log_ptr->info((request->header));
     SimpleWeb::CaseInsensitiveMultimap header;
-    response->write(SimpleWeb::StatusCode::client_error_not_found, "TaskControl error,POST default", header);
+    response->write(SimpleWeb::StatusCode::client_error_not_found, "error,POST default", header);
   };
   // 对未注册的GET请求的返回
   http_server_.default_resource["GET"]= [&](Response response, Request request) {
     auto log_ptr = logModule::getLogger("http_server");
     log_ptr->info("no GET request to register");
     SimpleWeb::CaseInsensitiveMultimap header;
-    response->write(SimpleWeb::StatusCode::client_error_not_found, "TaskControl error,GET default", header);
+    response->write(SimpleWeb::StatusCode::client_error_not_found, "error,GET default", header);
   };
 
-  /*-1*/http_server_.resource[path("-1")][method("-1")] = std::bind(&services::interface_route_N1,  this->services_, _1, _2);
-  /*01*/http_server_.resource[path("01")][method("01")] = std::bind(&services::interface_route_01,  this->services_, _1, _2);
-  /*02*/http_server_.resource[path("02")][method("02")] = std::bind(&services::interface_route_02,  this->services_, _1, _2);
+  /*-1*/http_server_.resource[path("-1")][method("-1")] = std::bind(&services::interface_route_N1,this->services_, _1, _2);
+  /*01*/http_server_.resource[path("01")][method("01")] = std::bind(&services::interface_route_01,this->services_, _1, _2);
+  /*02*/http_server_.resource[path("02")][method("02")] = std::bind(&services::interface_route_02,this->services_, _1, _2);
+  /*03*/http_server_.resource[path("03")][method("03")] = std::bind(&services::interface_route_03,this->services_, _1, _2);
 
 
 }

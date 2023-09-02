@@ -15,16 +15,24 @@ void services::interface_route_01(Response response, Request request) {
 }
 
 void services::interface_route_02(Response response, Request request) {
-  auto log_ptr = logModule::getLogger("http_server");
-//  log_ptr->info((request->content).string());
-  std::cout << (request->content).string() << std::endl;
+  logModule::registerLogger("download");
+  auto log_ptr = logModule::getLogger("download");
+  log_ptr->info((request->content).string());
+
   nlohmann::json ret;
   ret["code"] = 200;
   ret["err_msg"] = "no";
   ret["data"]["file_download_url"] = "http://localhost:5000/xx/xxx.txt";
 
-//  log_ptr->info(ret.dump());
-  std::cout << ret.dump() << std::endl;
+  log_ptr->info(ret.dump());
 
   response->write(ret.dump());
+}
+
+void services::interface_route_03(Response response, Request request) {
+  logModule::registerLogger("upload");
+  auto log_ptr = logModule::getLogger("upload");
+
+
+
 }
