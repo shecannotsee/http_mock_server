@@ -14,8 +14,8 @@ int main() {
     auto main_log = logModule::getLogger("main");
   });
 
-  http_server enity;
-  enity.start();
+  http_server entity{5000};
+  entity.start();
 
   return 0;
 };
