@@ -8,10 +8,9 @@
 #include <string>
 #include <memory>
 
-#include <nlohmann/json.hpp>
 #include <server_http.hpp>
-#include <asio.hpp>
 #include <log_wrapper.h>
+#include <services.h>
 
 class http_server {
   using HttpServer = SimpleWeb::Server<SimpleWeb::HTTP>;
@@ -25,12 +24,14 @@ class http_server {
   http_server(http_server&&) = delete;
   http_server& operator=(http_server&&) = delete;
   // destructors
-  ~http_server() = default;
+  ~http_server();
   // constructors
-  http_server() = default;
+  http_server() = delete;
+  explicit http_server(int port);
 
  private:
   HttpServer http_server_;
+  services services_;
 
  public:
   // register rest api
