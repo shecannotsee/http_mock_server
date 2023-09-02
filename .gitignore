@@ -1,0 +1,6 @@
+./asio
+./json
+./Simple-Web-Server
+./spdlog
+
+./cmake-build-debug
