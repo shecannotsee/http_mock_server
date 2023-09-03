@@ -6,8 +6,16 @@
 #define HTTP_MOCK_SERVER_SERVICES_H
 
 #include <server_http.hpp>
+#include "log_wrapper.h"
 
 class services {
+ public:
+  services() {
+    logModule::registerLogger("services");
+    log_ptr = logModule::getLogger("services");
+  };
+ private:
+  logModule::loggerPtr log_ptr;
  public:
   using HttpServer = SimpleWeb::Server<SimpleWeb::HTTP>;
   using Response   = std::shared_ptr<HttpServer::Response>;

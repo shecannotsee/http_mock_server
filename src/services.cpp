@@ -16,8 +16,6 @@ void services::interface_route_01(Response response, Request request) {
 }
 
 void services::interface_route_02(Response response, Request request) {
-  logModule::registerLogger("download");
-  auto log_ptr = logModule::getLogger("download");
   log_ptr->info((request->content).string());
 
   nlohmann::json ret;
@@ -31,8 +29,6 @@ void services::interface_route_02(Response response, Request request) {
 }
 
 void services::interface_route_03(Response response, Request request) {
-  logModule::registerLogger("upload");
-  auto log_ptr = logModule::getLogger("upload");
   log_ptr->info("start=========================");
   log_ptr->info((request->content).string());
   log_ptr->info("end=========================");
@@ -45,8 +41,6 @@ void services::interface_route_03(Response response, Request request) {
 }
 
 void services::interface_route_04(Response response, Request request) {
-  logModule::registerLogger("login");
-  auto log_ptr = logModule::getLogger("login");
   log_ptr->info((request->content).string());
 
   nlohmann::json user = nlohmann::json::parse(request->content); // string to json
@@ -81,13 +75,56 @@ static she_memory_ky<std::string, std::vector<std::string>> entity = {
 } // namespace role
 
 void services::interface_route_05(Response response, Request request) {
+  log_ptr->info((request->content).string());
 
+  nlohmann::json role_add = nlohmann::json::parse(request->content); // string to json
+  role::entity.set(role_add["role_name"],{});
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "meow meow meow~";
+  ret["data"][""];
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
 }
 
 void services::interface_route_06(Response response, Request request) {
+  log_ptr->info((request->content).string());
 
+  nlohmann::json role_edit = nlohmann::json::parse(request->content); // string to json
+  std::vector<std::string> _;
+  for (auto element : role_edit["role_codes"]) {
+    _.push_back(element);
+  };
+  role::entity.set(role_edit["role_name"],_);
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "meow meow meow~";
+  ret["data"][""];
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
 }
 
 void services::interface_route_07(Response response, Request request) {
+  log_ptr->info((request->content).string());
 
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "meow meow meow~";
+  int i=1;
+  for (auto element:role::entity.db_) {
+    nlohmann::json _1;
+    _1["role"] = i++;
+    _1["role_name"] = element.first;
+    for(auto _ : element.second) {
+     _1["role_codes"].push_back(_);
+    }
+    ret["data"].push_back(_1);
+  }
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
 }
