@@ -17,7 +17,7 @@ class services {
   void interface_route_01(Response,Request);
   void interface_route_02(Response,Request);
   void interface_route_03(Response,Request);
-
+  void interface_route_04(Response,Request);
 
 };
 
