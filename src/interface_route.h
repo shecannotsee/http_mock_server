@@ -22,6 +22,9 @@ const map<string,tuple<string,string>> route = {
       {"02",     {"POST",   "/rsu/configure_manage/export_configure"}},// 从服务器下载文件到前端接口
       {"03",     {"POST",   "/rsu/remote_manage/import_configure"}},// 上传文件到服务器接口
       {"04",     {"POST",   "/rsu/user_manage/login"}},// 登陆接口
+      {"05",     {"POST",   "/rsu/user_manage/role_add"}  },// 角色添加
+      {"06",     {"POST",   "/rsu/user_manage/role_edit"}},// 角色修改
+      {"07",     {"POST",   "/rsu/user_manage/role_list"}},// 角色列表
       {"9999999",{"POST",   "end"}} // 只是用来做末尾,无意义
 };
 
