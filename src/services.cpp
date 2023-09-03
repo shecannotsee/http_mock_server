@@ -73,3 +73,21 @@ void services::interface_route_04(Response response, Request request) {
   log_ptr->info(ret.dump());
   response->write(ret.dump());
 }
+
+namespace role {
+static she_memory_ky<std::string, std::vector<std::string>> entity = {
+  {"admin", {"menu_A", "menu_B", "menu_C", "menu_D"}}
+};
+} // namespace role
+
+void services::interface_route_05(Response response, Request request) {
+
+}
+
+void services::interface_route_06(Response response, Request request) {
+
+}
+
+void services::interface_route_07(Response response, Request request) {
+
+}

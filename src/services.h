@@ -18,6 +18,10 @@ class services {
   void interface_route_02(Response,Request);
   void interface_route_03(Response,Request);
   void interface_route_04(Response,Request);
+  void interface_route_05(Response,Request);
+  void interface_route_06(Response,Request);
+  void interface_route_07(Response,Request);
+
 
 };
 
