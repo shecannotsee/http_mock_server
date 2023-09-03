@@ -10,6 +10,13 @@
 
 template<typename T_Key,typename T_Value>
 class she_memory_ky {
+ public:
+  she_memory_ky() = default;
+  she_memory_ky(std::initializer_list<std::pair<T_Key, T_Value>> init_list) {
+    for (const auto& pair : init_list) {
+      db_[pair.first] = pair.second;
+    }
+  }
  private:
   std::unordered_map<T_Key,T_Value> db_;
 
