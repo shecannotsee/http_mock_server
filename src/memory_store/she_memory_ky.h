@@ -17,7 +17,8 @@ class she_memory_ky {
       db_[pair.first] = pair.second;
     }
   }
- private:
+
+ public:
   std::unordered_map<T_Key,T_Value> db_;
 
  public:
