@@ -15,8 +15,9 @@ class she_memory_ky {
 
  public:
   std::tuple<bool,T_Value> get(T_Key key) {
-    if (db_.find(key)) {
-      return std::make_tuple(true,db_[key]);
+    auto it = db_.find(key);
+    if (it != db_.end()) {
+      return std::make_tuple(true, it->second);
     } else {
       return std::make_tuple(false,T_Value{});
     }
