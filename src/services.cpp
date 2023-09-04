@@ -3,19 +3,24 @@
 //
 
 #include "services.h"
+#include "interface_route.h"
 #include <log_wrapper.h>
 #include <nlohmann/json.hpp>
 #include <memory_store/she_memory_ky.h>
 
 void services::interface_route_N1(Response response, Request request) {
+  log_ptr->info(interface::path("N1"));
 
 }
 
 void services::interface_route_01(Response response, Request request) {
+  log_ptr->info(interface::path("01"));
 
 }
 
 void services::interface_route_02(Response response, Request request) {
+  log_ptr->info(interface::path("02"));
+
   log_ptr->info((request->content).string());
 
   nlohmann::json ret;
@@ -29,6 +34,8 @@ void services::interface_route_02(Response response, Request request) {
 }
 
 void services::interface_route_03(Response response, Request request) {
+  log_ptr->info(interface::path("03"));
+
   log_ptr->info("start=========================");
   log_ptr->info((request->content).string());
   log_ptr->info("end=========================");
@@ -41,6 +48,8 @@ void services::interface_route_03(Response response, Request request) {
 }
 
 void services::interface_route_04(Response response, Request request) {
+  log_ptr->info(interface::path("05"));
+
   log_ptr->info((request->content).string());
 
   nlohmann::json user = nlohmann::json::parse(request->content); // string to json
@@ -75,6 +84,8 @@ static she_memory_ky<std::string, std::vector<std::string>> entity = {
 } // namespace role
 
 void services::interface_route_05(Response response, Request request) {
+  log_ptr->info(interface::path("05"));
+
   log_ptr->info((request->content).string());
 
   nlohmann::json role_add = nlohmann::json::parse(request->content); // string to json
@@ -90,6 +101,8 @@ void services::interface_route_05(Response response, Request request) {
 }
 
 void services::interface_route_06(Response response, Request request) {
+  log_ptr->info(interface::path("06"));
+
   log_ptr->info((request->content).string());
 
   nlohmann::json role_edit = nlohmann::json::parse(request->content); // string to json
@@ -109,6 +122,8 @@ void services::interface_route_06(Response response, Request request) {
 }
 
 void services::interface_route_07(Response response, Request request) {
+  log_ptr->info(interface::path("07"));
+
   log_ptr->info((request->content).string());
 
   nlohmann::json ret;
@@ -130,6 +145,7 @@ void services::interface_route_07(Response response, Request request) {
 }
 
 void services::interface_route_08(Response response, Request request) {
+  log_ptr->info(interface::path("08"));
   log_ptr->info((request->content).string());
 
   nlohmann::json ret;
@@ -143,6 +159,7 @@ void services::interface_route_08(Response response, Request request) {
 }
 
 void services::interface_route_09(Response response, Request request) {
+  log_ptr->info(interface::path("09"));
   log_ptr->info((request->content).string());
 
   nlohmann::json ret;
