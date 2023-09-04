@@ -128,3 +128,28 @@ void services::interface_route_07(Response response, Request request) {
   log_ptr->info(ret.dump());
   response->write(ret.dump());
 }
+
+void services::interface_route_08(Response response, Request request) {
+  log_ptr->info((request->content).string());
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "no";
+  ret["data"];
+
+  log_ptr->info(ret.dump());
+
+  response->write(ret.dump());
+}
+
+void services::interface_route_09(Response response, Request request) {
+  log_ptr->info((request->content).string());
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "no";
+  ret["data"];
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
+}

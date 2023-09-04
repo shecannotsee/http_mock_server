@@ -44,6 +44,8 @@ void http_server::register_rest_api() {
   /*05*/http_server_.resource[path("05")][method("05")] = std::bind(&services::interface_route_05,this->services_, _1, _2);
   /*06*/http_server_.resource[path("06")][method("06")] = std::bind(&services::interface_route_06,this->services_, _1, _2);
   /*07*/http_server_.resource[path("07")][method("07")] = std::bind(&services::interface_route_07,this->services_, _1, _2);
+  /*08*/http_server_.resource[path("08")][method("08")] = std::bind(&services::interface_route_08,this->services_, _1, _2);
+  /*09*/http_server_.resource[path("09")][method("09")] = std::bind(&services::interface_route_09,this->services_, _1, _2);
 
 }
 

@@ -25,6 +25,8 @@ const map<string,tuple<string,string>> route = {
       {"05",     {"POST",   "/rsu/user_manage/role_add"}  },// 角色添加
       {"06",     {"POST",   "/rsu/user_manage/role_edit"}},// 角色修改
       {"07",     {"POST",   "/rsu/user_manage/role_list"}},// 角色列表
+      {"08",     {"POST",   "/rsu/configure_manage/eth_configure"}},// eth
+      {"09",     {"POST",   "/rsu/configure_manage/wifi_configure"}},// wifi
       {"9999999",{"POST",   "end"}} // 只是用来做末尾,无意义
 };
 
