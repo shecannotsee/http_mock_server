@@ -26,7 +26,7 @@ void services::interface_route_02(Response response, Request request) {
   nlohmann::json ret;
   ret["code"] = 200;
   ret["err_msg"] = "no";
-  ret["data"]["file_download_url"] = "http://localhost:5000/xx/xxx.txt";
+  ret["data"]["file_download_url"] = "http://localhost:5001/config/xxx.txt";
 
   log_ptr->info(ret.dump());
 
@@ -57,12 +57,13 @@ void services::interface_route_04(Response response, Request request) {
 
   /* mock data */
   she_memory_ky<std::string,std::vector<std::string>> user_role;/* add data */ {
-    user_role.set("test1",{"menu_A","menu_B","menu_C","menu_D"});
+    //"baseInfo", "statusQuery", "faultAlarm", "versionInfo", "logsManage", "config", "resetSettings", "performance", "projectByMonth", "account", "role", "webLogs"
+
+    user_role.set("test1",{"baseInfo", "statusQuery", "faultAlarm", "versionInfo", "logsManage", "config", "resetSettings", "performance", "remoteUpgrade", "account", "role", "webLogs"});
     user_role.set("test2",{"menu_A","menu_B","menu_C"});
     user_role.set("test3",{"menu_A","menu_B"});
     user_role.set("test4",{"menu_A"});
   }
-
   nlohmann::json ret;
   ret["code"] = 200;
   ret["err_msg"] = "meow meow meow~";
