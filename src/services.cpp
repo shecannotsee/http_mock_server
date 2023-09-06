@@ -144,6 +144,16 @@ void services::interface_route_07(Response response, Request request) {
   nlohmann::json ret;
   ret["code"] = 200;
   ret["err_msg"] = "meow meow meow~";
+  for (auto e : store::role_entity.db_) {
+    nlohmann::json _1;
+    auto _2 = store::tuple_to_role(e.second);
+    _1["role_id"] = _2.get_id();
+    _1["role_name"] = _2.get_name();
+    for (auto role_code : _2.get_role_codes()) {
+      _1["role_codes"].push_back(role_code);
+    }
+    ret["data"].push_back(_1);
+  }
 
   log_ptr->info(ret.dump());
   response->write(ret.dump());
