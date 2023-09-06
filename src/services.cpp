@@ -171,3 +171,72 @@ void services::interface_route_09(Response response, Request request) {
   log_ptr->info(ret.dump());
   response->write(ret.dump());
 }
+
+namespace user {
+using user_format = std::tuple<std::string,int,std::string>;
+static she_memory_ky<int, user_format> entity = {
+  {1,{"admin",1,"超级管理员"}}
+};
+} // namespace user
+
+void services::interface_route_10(Response response, Request request) {
+  log_ptr->info(interface::path("10"));
+  log_ptr->info((request->content).string());
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "no";
+  ret["data"];
+  using user_list = std::tuple<int,std::string,int,std::string>;
+  user_list _;
+  for (auto it : user::entity.db_) {
+    nlohmann::json _1;
+    _1["user_id"] = std::to_string(it.first);
+    _1["user_name"] = std::get<0>(it.second);
+    _1["role_id"] = std::to_string(std::get<1>(it.second));
+    _1["role_name"] = std::get<2>(it.second);
+    ret["data"].push_back(_1);
+  }
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
+}
+
+void services::interface_route_11(Response response, Request request) {
+  log_ptr->info(interface::path("11"));
+  log_ptr->info((request->content).string());
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "no";
+  ret["data"];
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
+}
+
+void services::interface_route_12(Response response, Request request) {
+  log_ptr->info(interface::path("12"));
+  log_ptr->info((request->content).string());
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "no";
+  ret["data"];
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
+}
+
+void services::interface_route_13(Response response, Request request) {
+  log_ptr->info(interface::path("13"));
+  log_ptr->info((request->content).string());
+
+  nlohmann::json ret;
+  ret["code"] = 200;
+  ret["err_msg"] = "no";
+  ret["data"];
+
+  log_ptr->info(ret.dump());
+  response->write(ret.dump());
+}

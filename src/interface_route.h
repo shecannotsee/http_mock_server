@@ -27,6 +27,10 @@ const map<string,tuple<string,string>> route = {
       {"07",     {"POST",   "/rsu/user_manage/role_list"}},// 角色列表
       {"08",     {"POST",   "/rsu/configure_manage/eth_configure"}},// eth
       {"09",     {"POST",   "/rsu/configure_manage/wifi_configure"}},// wifi
+      {"10",     {"POST",   "/rsu/user_manage/user_list"}},// 用户列表
+      {"11",     {"POST",   "/rsu/user_manage/add_user"}},// 用户新增
+      {"12",     {"POST",   "/rsu/user_manage/remove_user"}},// 用户删除
+      {"13",     {"POST",   "/rsu/user_manage/user_pwd_update"}},// 用户修改密码
       {"9999999",{"POST",   "end"}} // 只是用来做末尾,无意义
 };
 
