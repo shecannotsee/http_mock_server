@@ -48,13 +48,13 @@ void services::interface_route_03(Response response, Request request) {
 }
 
 void services::interface_route_04(Response response, Request request) {
-  log_ptr->info(interface::path("05"));
+  log_ptr->info(interface::path("04"));
 
   log_ptr->info((request->content).string());
 
   nlohmann::json _ = nlohmann::json::parse(request->content); // string to json
-  std::string user_name = _["user_name"].dump();
-  std::string user_passwd = _["user_passwd"].dump();
+  std::string user_name = _["user_name"].get<std::string>();
+  std::string user_passwd = _["user_passwd"].get<std::string>();
 
   bool pass_login = false;
   int role_id = -1;
@@ -104,7 +104,7 @@ void services::interface_route_05(Response response, Request request) {
   log_ptr->info((request->content).string());
 
   nlohmann::json role_add = nlohmann::json::parse(request->content); // string to json
-  role::entity.set(role_add["role_name"],{});
+//  role::entity.set(role_add["role_name"],{});
 
   nlohmann::json ret;
   ret["code"] = 200;
@@ -126,7 +126,7 @@ void services::interface_route_06(Response response, Request request) {
   for (auto element : role_edit["role_codes"]) {
     _.push_back(element.dump());
   };
-  role::entity.set(role_edit["role_id"].dump(),_);
+//  role::entity.set(role_edit["role_id"].dump(),_);
 
   nlohmann::json ret;
   ret["code"] = 200;
@@ -139,22 +139,11 @@ void services::interface_route_06(Response response, Request request) {
 
 void services::interface_route_07(Response response, Request request) {
   log_ptr->info(interface::path("07"));
-
   log_ptr->info((request->content).string());
 
   nlohmann::json ret;
   ret["code"] = 200;
   ret["err_msg"] = "meow meow meow~";
-  int i=1;
-  for (auto element:role::entity.db_) {
-    nlohmann::json _1;
-    _1["role_id"] = i++;
-    _1["role_name"] = element.first;
-    for(auto _ : element.second) {
-     _1["role_codes"].push_back(_);
-    }
-    ret["data"].push_back(_1);
-  }
 
   log_ptr->info(ret.dump());
   response->write(ret.dump());
@@ -197,14 +186,14 @@ void services::interface_route_10(Response response, Request request) {
   ret["data"];
   using user_list = std::tuple<int,std::string,int,std::string>;
   user_list _;
-  for (auto it : user::entity.db_) {
-    nlohmann::json _1;
-    _1["user_id"] = std::to_string(it.first);
-    _1["user_name"] = std::get<0>(it.second);
-    _1["role_id"] = std::to_string(std::get<1>(it.second));
-    _1["role_name"] = std::get<2>(it.second);
-    ret["data"].push_back(_1);
-  }
+//  for (auto it : user::entity.db_) {
+//    nlohmann::json _1;
+//    _1["user_id"] = std::to_string(it.first);
+//    _1["user_name"] = std::get<0>(it.second);
+//    _1["role_id"] = std::to_string(std::get<1>(it.second));
+//    _1["role_name"] = std::get<2>(it.second);
+//    ret["data"].push_back(_1);
+//  }
 
   log_ptr->info(ret.dump());
   response->write(ret.dump());
@@ -216,17 +205,17 @@ void services::interface_route_11(Response response, Request request) {
 
   nlohmann::json user_add = nlohmann::json::parse(request->content);
   int i = 0;
-  for (auto element : user::entity.db_ ) {
-    if (i == element.first ) {
-      i = element.first + 1;
-    }
-  }
-  user::format _;
-  auto [user_name,role_id,role_name] = _;
-  user_name = user_add["user_name"].dump();
-  role_id = std::atoi(user_add["user_type"].dump().c_str());
-  role_name = "admin";
-  user::entity.set(i,_);
+//  for (auto element : user::entity.db_ ) {
+//    if (i == element.first ) {
+//      i = element.first + 1;
+//    }
+//  }
+//  user::format _;
+//  auto [user_name,role_id,role_name] = _;
+//  user_name = user_add["user_name"].dump();
+//  role_id = std::atoi(user_add["user_type"].dump().c_str());
+//  role_name = "admin";
+//  user::entity.set(i,_);
 
   nlohmann::json ret;
   ret["code"] = 200;
