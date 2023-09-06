@@ -14,18 +14,8 @@ namespace store {
 static int role_key = 1;
 using n_role = std::tuple<int,std::string,std::vector<std::string>>;
 static she_memory_ky<int, n_role> role_entity = {
-  {role_key,{role_key,"admin",{"baseInfo",
-                               "statusQuery",
-                               "faultAlarm",
-                               "versionInfo",
-                               "logsManage",
-                               "config",
-                               "resetSettings",
-                               "performance",
-                               "remoteUpgrade",
-                               "account",
-                               "role",
-                               "webLogs"}}}
+  /* 1 */{role_key,{role_key,"admin",{"baseInfo","statusQuery","faultAlarm","versionInfo","logsManage","config","resetSettings","performance","remoteUpgrade","account","role","webLogs"}}
+  }
 };
 
 static n_role role_2_tuple(role _) {
@@ -45,21 +35,11 @@ static role tuple_2_role(n_role _) {
 static int user_key = 1;
 using n_user = std::tuple<int,std::string,std::string,n_role>;
 static she_memory_ky<int, n_user> user_entity = {
-  {user_key,{user_key,"test1","123456",{role_key,"admin",{"baseInfo",
-                                            "statusQuery",
-                                            "faultAlarm",
-                                            "versionInfo",
-                                            "logsManage",
-                                            "config",
-                                            "resetSettings",
-                                            "performance",
-                                            "remoteUpgrade",
-                                            "account",
-                                            "role",
-                                            "webLogs"}}}}
+  /* 1 */{user_key,{user_key,"test1","123456",{role_key,"admin",{"baseInfo","statusQuery","faultAlarm","versionInfo","logsManage","config","resetSettings","performance","remoteUpgrade","account","role","webLogs"}}}
+  }
 };
 
-static n_user user_type_conversion(user _) {
+static n_user user_to_tuple(user _) {
   n_user ret;
   std::get<0>(ret) = _.get_id();
   std::get<1>(ret) = _.get_name();
