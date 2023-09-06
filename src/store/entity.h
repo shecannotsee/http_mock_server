@@ -18,14 +18,14 @@ static she_memory_ky<int, n_role> role_entity = {
   }
 };
 
-static n_role role_2_tuple(role _) {
+static n_role role_to_tuple(role _) {
   n_role ret;
   std::get<0>(ret) = _.get_id();
   std::get<1>(ret) = _.get_name();
   std::get<2>(ret) = _.get_role_codes();
   return ret;
 }
-static role tuple_2_role(n_role _) {
+static role tuple_to_role(n_role _) {
   return role(
     std::get<0>(_),
     std::get<1>(_),
@@ -44,7 +44,7 @@ static n_user user_to_tuple(user _) {
   std::get<0>(ret) = _.get_id();
   std::get<1>(ret) = _.get_name();
   std::get<2>(ret) = _.get_password();
-  auto _1 = role_2_tuple(_.get_role());
+  auto _1 = role_to_tuple(_.get_role());
   (std::get<3>(ret)) = _1;
   return ret;
 }
@@ -53,7 +53,7 @@ static user tuple_to_user(n_user _) {
     std::get<0>(_),
     std::get<1>(_),
     std::get<2>(_),
-    tuple_2_role(std::get<3>(_))
+    tuple_to_role(std::get<3>(_))
     );
 };
 
