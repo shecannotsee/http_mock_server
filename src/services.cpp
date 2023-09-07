@@ -69,16 +69,6 @@ void services::interface_route_04(Response response, Request request) {
     }
   }
 
-
-  /* mock data */
-  she_memory_ky<std::string,std::vector<std::string>> user_role;/* add data */ {
-    //"baseInfo", "statusQuery", "faultAlarm", "versionInfo", "logsManage", "config", "resetSettings", "performance", "projectByMonth", "account", "role", "webLogs"
-
-    user_role.set("test1",{"baseInfo", "statusQuery", "faultAlarm", "versionInfo", "logsManage", "config", "resetSettings", "performance", "remoteUpgrade", "account", "role", "webLogs"});
-    user_role.set("test2",{"menu_A","menu_B","menu_C"});
-    user_role.set("test3",{"menu_A","menu_B"});
-    user_role.set("test4",{"menu_A"});
-  }
   nlohmann::json ret;
   if (pass_login) {
     ret["code"] = 200;
