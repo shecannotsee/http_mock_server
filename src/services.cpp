@@ -262,10 +262,22 @@ void services::interface_route_12(Response response, Request request) {
 void services::interface_route_13(Response response, Request request) {
   log_ptr->info(interface::path("13"));
   log_ptr->info((request->content).string());
-
+  std::string err_msg;
+  auto _ = nlohmann::json::parse(request->content);
+  auto user_id = _["user_id"].get<int>();
+  auto new_passwd = _["new_passwd"].get<std::string>();
+  auto _x = store::user_entity.get(user_id);
+  if (store::user_entity.get_op(_x)) {
+    err_msg = "meow meow meow~";
+    auto _xx = store::tuple_to_user(store::user_entity.get_value(_x));
+    _xx.set_password(new_passwd);
+    store::user_entity.set(user_id,store::user_to_tuple(_xx));
+  } else {
+    err_msg = "no user to find";
+  }
   nlohmann::json ret;
   ret["code"] = 200;
-  ret["err_msg"] = "no";
+  ret["err_msg"] = err_msg;
   ret["data"];
 
   log_ptr->info(ret.dump());
