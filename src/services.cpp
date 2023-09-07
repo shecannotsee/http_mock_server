@@ -128,7 +128,7 @@ void services::interface_route_06(Response response, Request request) {
   if (std::get<0>(_)) {
     err_msg = "meow meow meow~";
     auto _role = store::tuple_to_role(std::get<1>(_));
-    std::vector<std::string> _role_codes;/* get role codes */ {
+    std::vector<std::string> _role_codes;/* get role codes from request */ {
       for (auto element: role_edit["role_codes"]) {
         _role_codes.push_back(element.get<std::string>());
       };
