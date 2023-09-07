@@ -123,17 +123,28 @@ void services::interface_route_06(Response response, Request request) {
   log_ptr->info((request->content).string());
 
   nlohmann::json role_edit = nlohmann::json::parse(request->content); // string to json
-  std::vector<std::string> _;
-  std::cout<<"json"<<role_edit["role_codes"].dump()<<std::endl;
-  for (auto element : role_edit["role_codes"]) {
-    _.push_back(element.dump());
-  };
-//  role::entity.set(role_edit["role_id"].dump(),_);
+  auto _ = store::role_entity.get(role_edit["role_id"].get<int>());
+  std::string err_msg;
+  if (std::get<0>(_)) {
+    err_msg = "meow meow meow~";
+    auto _role = store::tuple_to_role(std::get<1>(_));
+    std::vector<std::string> _role_codes;/* get role codes */ {
+      for (auto element: role_edit["role_codes"]) {
+        _role_codes.push_back(element.get<std::string>());
+      };
+    }
+    _role.set_role_codes(_role_codes);
+    // insert
+    store::role_entity.set(_role.get_id(),store::role_to_tuple(_role));
+  } else {
+    // do nothing...
+    err_msg = "error find";
+  }
 
   nlohmann::json ret;
   ret["code"] = 200;
-  ret["err_msg"] = "meow meow meow~";
-  ret["data"][""];
+  ret["err_msg"] = err_msg;
+  ret["data"];
 
   log_ptr->info(ret.dump());
   response->write(ret.dump());
