@@ -104,12 +104,14 @@ void services::interface_route_05(Response response, Request request) {
   log_ptr->info((request->content).string());
 
   nlohmann::json role_add = nlohmann::json::parse(request->content); // string to json
-//  role::entity.set(role_add["role_name"],{});
+  std::string role_name = role_add["role_name"].get<std::string>();
+  store::role _(++store::role_key,role_name,{});
+  store::role_entity.set(store::role_key, store::role_to_tuple(_));
 
   nlohmann::json ret;
   ret["code"] = 200;
   ret["err_msg"] = "meow meow meow~";
-  ret["data"][""];
+  ret["data"];
 
   log_ptr->info(ret.dump());
   response->write(ret.dump());
