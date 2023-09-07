@@ -216,22 +216,23 @@ void services::interface_route_11(Response response, Request request) {
   log_ptr->info((request->content).string());
 
   nlohmann::json user_add = nlohmann::json::parse(request->content);
-  int i = 0;
-//  for (auto element : user::entity.db_ ) {
-//    if (i == element.first ) {
-//      i = element.first + 1;
-//    }
-//  }
-//  user::format _;
-//  auto [user_name,role_id,role_name] = _;
-//  user_name = user_add["user_name"].dump();
-//  role_id = std::atoi(user_add["user_type"].dump().c_str());
-//  role_name = "admin";
-//  user::entity.set(i,_);
+  std::string err_msg;
+  std::string user_name = user_add["user_name"].get<std::string>();
+  std::string user_passwd = user_add["user_passwd"].get<std::string>();
+  int user_type = user_add["user_type"].get<int>();
+  auto _ = store::role_entity.get(user_type);
+  if (std::get<0>(_)) {
+    auto _role = store::tuple_to_role(std::get<1>(_));
+    store::user _user(++store::user_key,user_name,user_passwd,_role);
+    store::user_entity.set(store::user_key, store::user_to_tuple(_user));
+    err_msg = "meow meow meow~";
+  } else {
+    err_msg = "role cannot find";
+  }
 
   nlohmann::json ret;
   ret["code"] = 200;
-  ret["err_msg"] = "no";
+  ret["err_msg"] = err_msg;
   ret["data"];
 
   log_ptr->info(ret.dump());
