@@ -43,6 +43,12 @@ class she_memory_ky {
     return std::get<1>(_);
   }
 
+  void remove(T_Key _) {
+    if(this->get_op(this->get(_))) {
+      this->db_.erase(_);
+    }
+  }
+
 };
 
 
