@@ -242,6 +242,13 @@ void services::interface_route_11(Response response, Request request) {
 void services::interface_route_12(Response response, Request request) {
   log_ptr->info(interface::path("12"));
   log_ptr->info((request->content).string());
+  int user_id = (nlohmann::json::parse(request->content))["user_id"].get<int>();
+  for (auto element : store::user_entity.db_) {
+    if (store::tuple_to_user(element.second).get_id() == user_id) {
+      store::user_entity.remove(user_id);
+      break;
+    }
+  }
 
   nlohmann::json ret;
   ret["code"] = 200;
