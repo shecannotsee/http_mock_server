@@ -207,16 +207,15 @@ void services::interface_route_10(Response response, Request request) {
   ret["code"] = 200;
   ret["err_msg"] = "no";
   ret["data"];
-  using user_list = std::tuple<int,std::string,int,std::string>;
-  user_list _;
-//  for (auto it : user::entity.db_) {
-//    nlohmann::json _1;
-//    _1["user_id"] = std::to_string(it.first);
-//    _1["user_name"] = std::get<0>(it.second);
-//    _1["role_id"] = std::to_string(std::get<1>(it.second));
-//    _1["role_name"] = std::get<2>(it.second);
-//    ret["data"].push_back(_1);
-//  }
+  for (auto element : store::user_entity.db_) {
+    nlohmann::json _;
+    auto _user = store::tuple_to_user(element.second);
+    _["user_id"] = _user.get_id();
+    _["user_name"] = _user.get_name();
+    _["role_id"] = _user.get_role().get_id();
+    _["role_name"] = _user.get_role().get_name();
+    ret["data"].push_back(_);
+  }
 
   log_ptr->info(ret.dump());
   response->write(ret.dump());
